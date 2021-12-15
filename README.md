@@ -25,13 +25,13 @@ Add the remaining functionality to the Login form found on the `Exercise` scene.
 
 ## Acceptance Criteria
 
-    You must define a css for the form considering a responsive page.
-    You must send a `POST` request to the following endpoint: `/login`
-    When the user clicks the "Login" button, the Login button should be disabled to prevent multiple login attempts.
-    When a user enters an invalid username and password, the Login button should enable so the user can try again.
-    When a user enters an invalid username and password, you should display the error message from the server.
-    When a user enters a valid username and password pair, the user should be redirect to an another page and render the User profile data, no need any css style on that page, just something basic if have time.
-    You can use this as valid Test Data: username: `carlos54321@eduplaytion.no` and password: `123456`
+    - You must define a css for the form considering a responsive page.
+    - You must send a `POST` request to the following endpoint: `/login`
+    - When the user clicks the "Login" button, the Login button should be disabled to prevent multiple login attempts.
+    - When a user enters an invalid username and password, the Login button should enable so the user can try again.
+    - When a user enters an invalid username and password, you should display the error message from the server.
+    - When a user enters a valid username and password pair, the user should be redirect to an another page and render the User profile data, no need any css style on that page, just something basic if have time.
+    - You can use this as valid Test Data: username: `carlos54321@eduplaytion.no` and password: `123456`
 
 ## Tips's code considerations:
 React components: try to create components for things that we can reuse.
