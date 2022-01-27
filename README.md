@@ -1,7 +1,7 @@
 # Numetry Front-end Developer Exercise
 
 ![Logscreen](/src/assets/logscreenprint.png)
-![Profile](/src/assets/logscreenprint.png)
+![Profile](/src/assets/profileprint.png)
 
 ## The Exercise
 
