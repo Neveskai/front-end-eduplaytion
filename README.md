@@ -1,5 +1,8 @@
 # Numetry Front-end Developer Exercise
 
+![Logscreen](/assets/logscreenprint.png)
+![Profile](/assets/logscreenprint.png)
+
 ## The Exercise
 
 Numetry is an educational platform created by Eduplaytion, an EdTech company based in Norway. Our company mission is to build innovative web-based tools for teachers and engaging video games for pupils to help teach abstract concepts in Mathematics. For our Front-end Web Developer position, we are building a suite of tools for schools and teachers that shows pupil progress over times and other teaching aides.
