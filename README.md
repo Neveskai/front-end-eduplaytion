@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Numetry Front-end Developer Exercise
 
 ## The Exercise
@@ -69,6 +68,4 @@ POST: /login
 - ESLint
 - Prettier
 - Axios
-=======
-# eduplaytion-front-test
->>>>>>> c715bd2999f54dbf834086b6a08fe7b5b0a056e7
+
