@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./ProfileView.scss";
 
 const ProfileView: FC = (): JSX.Element => {
@@ -31,10 +31,32 @@ const ProfileView: FC = (): JSX.Element => {
         </nav>
       </header>
       <main>
-        <ul>
-          <li> {location.state.userProfile.name} </li>
-          <li> </li>
-        </ul>
+        Dinamic Way
+        {location.state != null && (
+          <ul>
+            {Object.entries(location.state.userProfile).map((info, i) => {
+              return (
+                <li key={"data" + i}>
+                  {info[0]}: {info[1]}
+                </li>
+              );
+            })}
+          </ul>
+        )}
+        Static Way
+        {location.state != null && (
+          <ul>
+            <li> First name: {location.state.userProfile.firstName} </li>
+            <li> Avatar name: {location.state.userProfile.avatarName} </li>
+            <li> Account Type: {location.state.userProfile.accountType} </li>
+            <li> Created At: {location.state.userProfile.createdAt} </li>
+            <li>
+              {" "}
+              Subscription Plan Id:{" "}
+              {location.state.userProfile.subscriptionPlanId}{" "}
+            </li>
+          </ul>
+        )}
       </main>
     </div>
   );
