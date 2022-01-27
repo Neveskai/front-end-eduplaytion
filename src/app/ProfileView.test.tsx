@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import LoginView from "./LoginView";
 import ReactTestUtils, { act } from "react-dom/test-utils";
+import ProfileView from "./ProfileView";
 import ReactDOM from "react-dom";
 import { MemoryRouter } from "react-router-dom";
 
@@ -25,18 +25,16 @@ afterEach(() => {
   }
 });
 
-it("can render and update a counter", () => {
+it("renders learn react link", () => {
   act(() => {
     ReactDOM.render(
       <MemoryRouter initialEntries={["/login"]}>
-        <LoginView />
+        <ProfileView />
       </MemoryRouter>,
       container
     );
   });
 
-  if (container != null) {
-    const atitle = container.querySelector("h2");
-    if (atitle) expect(atitle.textContent).toBe("Login");
-  }
+  const linkElement = screen.getByText(/profile/i);
+  expect(linkElement).toBeInTheDocument();
 });

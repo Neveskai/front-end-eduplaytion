@@ -1,0 +1,54 @@
+.App-container {
+     width: 100%;
+     height: 100vh;
+     background-color: #999;
+}
+
+
+.App-form {
+     background-color: #fff;
+     position: absolute;
+     width: 20%;
+     left: 50%;
+     top: 50%;
+     margin-top: -20px;
+     transform: translate(-50%, -50%);
+     padding: 20px;
+     border: 1px solid #666;
+}
+.App-form h2 {
+     text-align: center;
+     color: #285CA9;
+}
+.App-form label {
+     font-weight: 500;
+     font-size: 14px;
+}
+
+.form-control {
+     display: block;
+     border: 1px solid #bbb;
+     padding: 2px;
+     line-height: 22px;
+     width: 100%;
+     border-radius: 5px;
+}
+
+.btn-submit {
+     background-color: #6300BE;
+     width: 100%;
+     color: #fff;
+     padding: 10px;
+     border: 0;
+}
+
+.mb-1 {
+     margin-bottom: 5px;
+}
+.mb-2 {
+     margin-bottom: 10px;
+}
+.mt-1 {
+     margin-top: 3px;
+}
+

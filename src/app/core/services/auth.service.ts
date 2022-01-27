@@ -5,8 +5,8 @@ export const login = async (auth: any): Promise<any> => {
     data: auth, 
     method: 'POST',
     url: '/login',
-    baseURL: 'https://staging-api.numetry.com',
-  }).then((response) =>  response.data)
+    baseURL: 'https://staging-api.numetry.com'
+  }).then((response) => response.data)
   .catch((error) => {
       throw 'Email or password is wrong.';
   });

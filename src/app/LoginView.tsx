@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 
 import { login } from "./core/services/auth.service";
 import "./LoginView.scss";
@@ -12,46 +12,66 @@ const LoginView: FC = (): JSX.Element => {
   });
 
   const [userProfile, setUserProfile] = useState({
-    name: "",
-    accountType: ""
+    firstName: "",
+    avatarName: "",
+    accountType: "",
+    createdAt: "",
+    subscriptionPlanId: 0,
+    logged: false,
   });
 
+  const [submitBtnClicked, setsubmitBtnClicked] = useState(false);
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    console.log('Login :: useEffect');
-  });
+    console.log(userProfile);
+  }, [userProfile]);
 
   const handleFormChange = (param: string) => (e: any) => {
     setFormObject({ ...formObject, [param]: e.target.value });
   };
 
   const navigate = useNavigate();
-  console.log('starting request progress');
+  console.log("starting request progress");
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    if (submitBtnClicked) return false;
+    setsubmitBtnClicked(true);
     await login({
-        email: formObject.username,
-        password: formObject.password,
-    }).then((result) => {
-      console.log('result :: ', result);
-      // TODO :: define de UserProfile State,
-      // setState para ser replicado no Context later to be used in the profile pag
-      setUserProfile({
-        name: result.accountData.firstName,
-        accountType: result.accountData.accountType, 
+      email: formObject.username,
+      password: formObject.password,
+    })
+      .then((result) => {
+        console.log("result :: ", result);
+        // TODO :: define de UserProfile State,
+        // setState para ser replicado no Context later to be used in the profile pag
+        setUserProfile({
+          firstName: result.accountData.firstName,
+          accountType: result.accountData.accountType,
+          avatarName: result.accountData.avatarName,
+          createdAt: result.accountData.createdAt,
+          subscriptionPlanId: result.accountData.subscriptionPlanId,
+          logged: true,
+        });
+        navigate("/profile", {
+          state: {
+            userProfile: {
+              firstName: result.accountData.firstName,
+              accountType: result.accountData.accountType,
+              avatarName: result.accountData.avatarName,
+              createdAt: result.accountData.createdAt,
+              subscriptionPlanId: result.accountData.subscriptionPlanId,
+              logged: true,
+            },
+          },
+        });
+      })
+      .catch((error) => {
+        alert(error);
+      })
+      .finally(() => {
+        console.log("finally progress");
+        setsubmitBtnClicked(false);
       });
-      navigate('/profile', {state: { userProfile: {
-        name: result.accountData.firstName,
-        accountType: result.accountData.accountType, 
-      } } });
-      
-    })
-    .catch((error) => {
-      alert(error);
-    })
-    .finally(() => {
-      console.log('finally progress');
-    })
   };
 
   return (
@@ -68,41 +88,57 @@ const LoginView: FC = (): JSX.Element => {
           </nav>
         </header>
 
-        <h1>Login</h1>
+        <div className="App-form">
+          <h2>Login</h2>
 
-        <form className="App-form" onSubmit={handleSubmit}>
-          <label>
-            <input
-              name="username"
-              type="text"
-              value={formObject.username}
-              placeholder="carlos54321@eduplaytion.no"
-              onChange={handleFormChange("username")}
-              required
-            />
-          </label>
+          <form onSubmit={handleSubmit}>
+            <label>
+              Username
+              <input
+                className="form-control mb-2 mt-1"
+                name="username"
+                type="text"
+                value={formObject.username}
+                onInput={handleFormChange("username")}
+                placeholder="carlos54321@eduplaytion.no"
+              />
+            </label>
 
-          <label>
-            <input
-              name="password"
-              type="input"
-              value={formObject.password}
-              placeholder="123456"
-              onChange={handleFormChange("password")}
-              required
-            />
-          </label>
+            <label>
+              Password
+              <input
+                className="form-control mb-2 mt-1"
+                name="password"
+                type="password"
+                value={formObject.password}
+                onInput={handleFormChange("password")}
+                placeholder="123456"
+              />
+            </label>
 
-          <input type="Submit" />
-          
-          {/* TODO :: Show just when have a value defined */}
-          <section className="Profile-Logged">
-            <ul>
-              <li> Hey {userProfile.accountType} {userProfile.name}, welcome!</li>
-            </ul>
-          </section>
+            <label>
+              <input
+                type="submit"
+                className="btn-submit"
+                disabled={submitBtnClicked}
+              />
+              {submitBtnClicked && <p>Loading...</p>}
+            </label>
 
-        </form>
+            {/* TODO :: Show just when have a value defined */}
+            <section className="Profile-Logged">
+              <ul>
+                {userProfile.logged && (
+                  <li>
+                    {" "}
+                    Hey {userProfile.accountType} {userProfile.firstName},
+                    welcome!{" "}
+                  </li>
+                )}
+              </ul>
+            </section>
+          </form>
+        </div>
       </div>
     </div>
   );
