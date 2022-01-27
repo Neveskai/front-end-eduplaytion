@@ -10,7 +10,7 @@ const rootElement = document.getElementById("root");
 
 ReactDOM.render(
   <BrowserRouter>
-    <Routes>
+    <Routes>  
       <Route path="/" element={<LoginView />} />
       <Route path="login" element={<LoginView />} />
       <Route path="profile" element={<ProfileView />} />
